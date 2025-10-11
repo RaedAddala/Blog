@@ -1,0 +1,68 @@
+baseURL: https://raedaddala.github.io/
+languageCode: en-us
+title: Mek's Space
+
+theme: ["PaperMod"]
+
+pagination:
+  pagerSize: 5
+
+enableRobotsTXT: true
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+params:
+  env: production
+
+  description: "This is my Portfolio and my Blog where I share my projects and my thoughts on Distributed Systems and other topics."
+  keywords: [Blog, Portfolio, Distributed Systems, Apache Kafka, Rust, Actor Model, Software Internals ]
+  author: "Addala Raed"
+
+
+  DateFormat: "January 2, 2006"
+  defaultTheme: auto
+
+  ShowReadingTime: true
+  ShowWordCount: true
+
+  ShowShareButtons: true
+
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: true
+
+
+menu:
+  main:
+    - identifier: profile
+      name: Profile
+      url: /
+      weight: 10
+    - identifier: projects
+      name: Projects
+      url: /projects/
+      weight: 20
+    - identifier: categories
+      name: Categories
+      url: /categories/
+      weight: 30
+    - identifier: tags
+      name: Tags
+      url: /tags/
+      weight: 40
+    - identifier: archives
+      name: Archives
+      url: /archives/
+      weight: 50
