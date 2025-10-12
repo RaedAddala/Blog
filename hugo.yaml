@@ -1,6 +1,6 @@
 baseURL: https://raedaddala.github.io/
 languageCode: en-us
-title: Mek's Space
+title: Raed's Forge
 
 theme: ["PaperMod"]
 
@@ -23,9 +23,18 @@ params:
   env: production
 
   description: "This is my Portfolio and my Blog where I share my projects and my thoughts on Distributed Systems and other topics."
-  keywords: [Blog, Portfolio, Distributed Systems, Apache Kafka, Rust, Actor Model, Software Internals ]
+  keywords:
+    [
+      Blog,
+      Portfolio,
+      Distributed Systems,
+      Blockchain,
+      Apache Kafka,
+      Rust,
+      Actor Model,
+      Software Internals,
+    ]
   author: "Addala Raed"
-
 
   DateFormat: "January 2, 2006"
   defaultTheme: auto
@@ -39,7 +48,7 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
-  
+
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
@@ -60,9 +69,10 @@ params:
     threshold: 0.4
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
-  
-  
+
   socialIcons:
+    - name: email
+      url: "mailto:addala.raed@gmail.com"
     - name: github
       url: "https://github.com/RaedAddala"
     - name: linkedin
@@ -90,9 +100,19 @@ params:
       - name: Blog
         url: "/posts/"
 
+assets:
+  - favicon16x16: /assets/favicon-16x16.png
+  - favicon32x32: /assets/favicon-32x32.png
+  - apple_touch_icon: /assets/apple-touch-icon.png
+  - android_chrome_192x192: /assets/android-chrome-192x192.png
+  - android_chrome_512x512: /assets/android-chrome-512x512.png
+
+favicon: favicon.ico
+
 services:
   googleAnalytics:
     id: "G-V8V895X3G4"
+
 menu:
   main:
     - identifier: profile
