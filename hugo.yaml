@@ -13,6 +13,12 @@ minify:
   disableXML: true
   minifyOutput: true
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
 params:
   env: production
 
@@ -43,7 +49,50 @@ params:
   showtoc: true
   tocopen: true
 
+  comments: true
+  ShowSearchBar: true
 
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+  
+  
+  socialIcons:
+    - name: github
+      url: "https://github.com/RaedAddala"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/addalaraed/"
+    - name: twitter
+      url: "https://x.com/AddalaRaed"
+    - name: stackoverflow
+      url: "https://stackoverflow.com/users/11842805/raed-addala"
+    - name: kaggle
+      url: "https://www.kaggle.com/raedaddala"
+    - name: codeforces
+      url: "https://codeforces.com/profile/MekraziRaed"
+
+  profileMode:
+    enabled: true
+    title: "Addala Raed"
+    subtitle: "Software engineering student passionate about distributed systems, backend technologies, and innovative projects that blend theory with real-world impact."
+    imageUrl: "https://avatars.githubusercontent.com/u/56173312?v=4"
+    imageWidth: 120
+    imageHeight: 120
+    imageTitle: "Raed Addala's profile picture"
+    buttons:
+      - name: Portfolio
+        url: "/projects/"
+      - name: Blog
+        url: "/posts/"
+
+services:
+  googleAnalytics:
+    id: "G-V8V895X3G4"
 menu:
   main:
     - identifier: profile
