@@ -35,10 +35,20 @@ params:
       Software Internals,
     ]
   author: "Addala Raed"
-
+  images: ["/og_image.jpg"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto
+  
+  assets:
+    favicon: "/favicon.ico"
+    favicon16x16: "/assets/favicon-16x16.png"
+    favicon32x32: "/assets/favicon-32x32.png"
+    apple_touch_icon: "/assets/apple-touch-icon.png"
+    android_chrome_192: "/assets/android-chrome-192x192.png"
+    android_chrome_512: "/assets/android-chrome-512x512.png"
 
+  pwa: true
+  
   ShowReadingTime: true
   ShowWordCount: true
 
@@ -48,7 +58,8 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
-
+  ShowFullTextinRSS: true
+  
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
@@ -85,6 +96,8 @@ params:
       url: "https://www.kaggle.com/raedaddala"
     - name: codeforces
       url: "https://codeforces.com/profile/MekraziRaed"
+    - name: "rss"
+      url: "https://raedaddala.github.io/index.xml"
 
   profileMode:
     enabled: true
@@ -99,15 +112,7 @@ params:
         url: "/projects/"
       - name: Blog
         url: "/posts/"
-
-assets:
-  - favicon16x16: /assets/favicon-16x16.png
-  - favicon32x32: /assets/favicon-32x32.png
-  - apple_touch_icon: /assets/apple-touch-icon.png
-  - android_chrome_192x192: /assets/android-chrome-192x192.png
-  - android_chrome_512x512: /assets/android-chrome-512x512.png
-
-favicon: favicon.ico
+  
 
 services:
   googleAnalytics:
@@ -139,3 +144,9 @@ menu:
       name: Archives
       url: /archives/
       weight: 60
+
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
