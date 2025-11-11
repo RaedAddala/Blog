@@ -4,20 +4,33 @@ title: Raed's Forge
 
 theme: ["PaperMod"]
 
+copyright: '© 2025 Raed Addala - Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+
 pagination:
   pagerSize: 5
 
 enableRobotsTXT: true
+canonifyURLs: true
 
 minify:
   disableXML: true
   minifyOutput: true
+
+fingerprint:
+  disableCSS: false
+  disableJS: false
+  disableHTML: false
 
 outputs:
   home:
     - HTML
     - RSS
     - JSON
+#    - llms
+
+sitemap:
+  changefreq: "weekly"
+  priority: 0.5
 
 params:
   env: production
@@ -39,6 +52,9 @@ params:
   DateFormat: "January 2, 2006"
   defaultTheme: auto
   
+  twitterCards: true
+  twitter: "@AddalaRaed"
+
   assets:
     favicon: "/favicon.ico"
     favicon16x16: "/assets/favicon-16x16.png"
@@ -46,6 +62,7 @@ params:
     apple_touch_icon: "/assets/apple-touch-icon.png"
     android_chrome_192: "/assets/android-chrome-192x192.png"
     android_chrome_512: "/assets/android-chrome-512x512.png"
+    themeColor: "#ffffff"
 
   pwa: true
   
@@ -80,6 +97,11 @@ params:
     threshold: 0.4
     minMatchCharLength: 0
     keys: ["title", "permalink", "summary", "content"]
+
+  ShowRelatedPosts: 5
+  limitPagerPosts: 5
+  coverImageDir: "/images/"
+  ShowTaxonomiesInFooter: true
 
   socialIcons:
     - name: email
