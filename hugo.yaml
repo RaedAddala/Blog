@@ -1,10 +1,10 @@
 baseURL: https://raedaddala.github.io/
 languageCode: en-us
-title: Raed's Forge
+title: Addala Raed
 
 theme: ["PaperMod"]
 
-copyright: '© 2025 Raed Addala - Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
+copyright: '© 2026 Raed Addala - Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 
 pagination:
   pagerSize: 5
@@ -26,7 +26,6 @@ outputs:
     - HTML
     - RSS
     - JSON
-#    - llms
 
 sitemap:
   changefreq: "weekly"
@@ -34,7 +33,11 @@ sitemap:
 
 params:
   env: production
-
+  mainSections:
+    - posts
+    - projects
+  ShowAllPagesInArchive: true
+  ShowTaxonomiesInPost: true
   description: "This is my Portfolio and my Blog where I share my projects and my thoughts on Distributed Systems and other topics."
   keywords:
     [
@@ -51,7 +54,7 @@ params:
   images: ["/og_image.jpg"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto
-  
+
   twitterCards: true
   twitter: "@AddalaRaed"
 
@@ -62,10 +65,13 @@ params:
     apple_touch_icon: "/assets/apple-touch-icon.png"
     android_chrome_192: "/assets/android-chrome-192x192.png"
     android_chrome_512: "/assets/android-chrome-512x512.png"
-    themeColor: "#ffffff"
+    themeColor: "#1e1e1e"
 
-  pwa: true
-  
+  pwa:
+    manifest:
+      name: "Addala Raed"
+      short_name: "Raed"
+      description: "Portfolio & Blog on Distributed Systems"
   ShowReadingTime: true
   ShowWordCount: true
 
@@ -76,7 +82,7 @@ params:
   ShowCodeCopyButtons: true
   ShowRssButtonInSectionTermList: true
   ShowFullTextinRSS: true
-  
+
   UseHugoToc: true
   disableSpecial1stPost: false
   disableScrollToTop: false
@@ -94,8 +100,8 @@ params:
     shouldSort: true
     location: 0
     distance: 1000
-    threshold: 0.4
-    minMatchCharLength: 0
+    threshold: 0.3
+    minMatchCharLength: 2
     keys: ["title", "permalink", "summary", "content"]
 
   ShowRelatedPosts: 5
@@ -110,7 +116,7 @@ params:
       url: "https://github.com/RaedAddala"
     - name: linkedin
       url: "https://www.linkedin.com/in/addalaraed/"
-    - name: twitter
+    - name: x
       url: "https://x.com/AddalaRaed"
     - name: stackoverflow
       url: "https://stackoverflow.com/users/11842805/raed-addala"
@@ -134,11 +140,20 @@ params:
         url: "/projects/"
       - name: Blog
         url: "/posts/"
+      - name: Download CV
+        url: "/CV-Addala-Raed.pdf"
   
+  ShowPageNums: true
 
 services:
   googleAnalytics:
     id: "G-V8V895X3G4"
+
+taxonomies:
+  category: categories
+  tag: tags
+  series: series
+
 
 menu:
   main:
@@ -146,6 +161,10 @@ menu:
       name: Profile
       url: /
       weight: 10
+    - identifier: about
+      name: About
+      url: /about/
+      weight: 15
     - identifier: projects
       name: Projects
       url: /projects/
@@ -166,7 +185,12 @@ menu:
       name: Archives
       url: /archives/
       weight: 60
-
+    - name: Search
+      url: /search/
+      weight: 70
+    - name: Series
+      url: /series/
+      weight: 45
 
 markup:
   goldmark:
