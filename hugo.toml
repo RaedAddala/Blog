@@ -76,7 +76,7 @@ disableSpecial1stPost = false
 disableScrollToTop = false
 hidemeta = false
 hideSummary = false
-comments = false
+comments = true
 ShowSearchBar = true
 ShowRelatedPosts = 5
 limitPagerPosts = 5
@@ -236,3 +236,6 @@ guessSyntax = true
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[frontmatter]
+lastmod = ["lastmod", ":git", "date", "publishDate"]
