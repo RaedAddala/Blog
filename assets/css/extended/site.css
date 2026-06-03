@@ -49,9 +49,25 @@
   line-height: 1.65;
 }
 
-.profile img {
+.profile-focus {
   border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--primary);
+  font-size: 0.95rem;
+  margin: 2px 0 0;
+  padding: 6px 14px;
+}
+
+.profile img {
+  aspect-ratio: 1;
+  border: 1px solid var(--border);
+  border-radius: 50%;
   box-shadow: var(--entry-shadow);
+  display: block;
+  height: 120px;
+  object-fit: cover;
+  object-position: center 32%;
+  width: 120px;
 }
 
 .profile .buttons {
@@ -125,6 +141,108 @@
   text-underline-offset: 4px;
 }
 
+.post-content .social-icons {
+  display: flex;
+  gap: 12px;
+  margin: 4px 0 20px;
+  padding: 0;
+}
+
+.post-content .social-icons a {
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 38px;
+  justify-content: center;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+  width: 38px;
+}
+
+.post-content .social-icons a:hover,
+.post-content .social-icons a:focus-visible {
+  border-color: var(--secondary);
+  transform: translateY(-1px);
+}
+
+.about-profile {
+  background:
+    linear-gradient(135deg, rgba(125, 125, 125, 0.08), transparent 52%),
+    var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--entry-shadow);
+  margin: 2px 0 34px;
+  min-height: 156px;
+  padding: 22px;
+}
+
+.about-profile::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+.about-profile-photo {
+  aspect-ratio: 1;
+  border: 2px solid var(--theme);
+  border-radius: 50%;
+  box-shadow: var(--entry-shadow);
+  float: right;
+  height: 148px;
+  margin: 0 0 18px 28px;
+  object-fit: cover;
+  object-position: center 32%;
+  width: 148px;
+}
+
+.about-title {
+  color: var(--primary);
+  font-size: 1.16rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 8px;
+}
+
+.about-location {
+  color: var(--secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.about-cv-link {
+  border-bottom: 1px solid var(--secondary);
+  display: inline-block;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.post-content blockquote {
+  background: var(--code-bg);
+  border-inline-start: 4px solid var(--tertiary);
+  border-radius: var(--radius);
+  margin: 24px 0;
+  padding: 16px 18px;
+}
+
+.post-content blockquote p {
+  color: var(--content);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.post-content h2 {
+  margin-top: 38px;
+}
+
+.post-content li {
+  margin: 8px 0;
+}
+
 .post-title,
 .page-header h1 {
   letter-spacing: 0;
@@ -164,5 +282,17 @@ button:focus-visible {
 
   .profile .profile_inner > span {
     max-width: 34rem;
+  }
+
+  .about-profile {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .about-profile-photo {
+    float: none;
+    height: 124px;
+    margin: 2px 0 18px;
+    width: 124px;
   }
 }

@@ -1,9 +1,9 @@
 ---
 title: "Search"
 layout: "search"
-description: "Search Raed Addala's portfolio, projects, and technical blog posts."
-summary: "Search the portfolio and blog."
-placeholder: "Search posts, projects, and tags..."
+description: "Search Raed Addala's site content."
+summary: "Search the portfolio, pages, and future publications."
+placeholder: "Search the site..."
 images: ["/og-image.jpg"]
 sitemap:
   disable: true

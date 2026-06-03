@@ -1,8 +1,8 @@
 ---
 title: "Raed Addala"
-description: "Software engineering student portfolio and technical blog focused on backend engineering, distributed systems, and applied projects."
-summary: "Portfolio and technical blog for Raed Addala, a software engineering student focused on backend systems and practical engineering projects."
-keywords: ["Raed Addala", "software engineering student", "backend engineering", "distributed systems", "portfolio"]
+description: "Portfolio of Raed Addala, a software engineering student at INSAT focused on distributed systems and AI."
+summary: "Distributed systems and AI portfolio for Raed Addala, currently finishing an end-of-studies internship in federated learning."
+keywords: ["Raed Addala", "distributed systems", "AI", "federated learning", "portfolio"]
 images: ["/og-image.jpg"]
 sitemap:
   priority: 1.0

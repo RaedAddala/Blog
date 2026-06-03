@@ -1,8 +1,8 @@
 ---
 title: "Blog"
-description: "Technical blog by Raed Addala about backend engineering, distributed systems, software projects, and learning notes."
-summary: "Engineering notes, project writeups, and learning logs."
-keywords: ["software engineering blog", "backend blog", "distributed systems", "Raed Addala"]
+description: "Technical writing by Raed Addala on distributed systems and AI."
+summary: "This section will host future notes and writeups on distributed systems and AI."
+keywords: ["distributed systems blog", "AI notes", "Raed Addala"]
 images: ["/og-image.jpg"]
 sitemap:
   priority: 0.9

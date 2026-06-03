@@ -1,8 +1,8 @@
 ---
 title: "Archives"
 layout: "archives"
-description: "Browse all posts and project notes from Raed Addala's technical blog."
-summary: "Archive of technical writing and project notes."
+description: "Archive of published writing and project notes by Raed Addala."
+summary: "Archive of published site content."
 images: ["/og-image.jpg"]
 sitemap:
   priority: 0.4

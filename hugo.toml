@@ -47,8 +47,8 @@ weight = 10
 
 [params]
 env = "production"
-description = "Software engineering student portfolio and technical blog focused on backend engineering, distributed systems, and applied projects."
-keywords = ["software engineering", "portfolio", "backend", "distributed systems", "Apache Kafka", "Hugo", "technical blog", "blockchain", "Rust", "actor model", "software internals"]
+description = "Portfolio of Raed Addala, a software engineering student at INSAT focused on distributed systems and AI, currently finishing an end-of-studies internship in federated learning."
+keywords = ["Raed Addala", "distributed systems", "AI", "federated learning", "software engineering", "INSAT", "R&D engineer", "PhD thesis", "EMEA"]
 author = "Raed Addala"
 images = ["/og-image.jpg"]
 DateFormat = "January 2, 2006"
@@ -95,7 +95,7 @@ themeColor = "#1e1e1e"
 [params.pwa.manifest]
 name = "Raed Addala"
 short_name = "Raed"
-description = "Portfolio and technical blog on software engineering, backend systems, and distributed systems."
+description = "Portfolio focused on distributed systems, AI, and federated learning."
 start_url = "/"
 scope = "/"
 display = "standalone"
@@ -121,11 +121,28 @@ twitter = "AddalaRaed"
 [params.profileMode]
 enabled = true
 title = "Raed Addala"
-subtitle = "Software engineering student focused on backend systems, distributed systems, and practical engineering projects."
-imageUrl = "https://avatars.githubusercontent.com/u/56173312?v=4"
+subtitle = "Software engineering student at INSAT focused on distributed systems and AI, currently finishing an end-of-studies internship in federated learning and seeking hybrid or in-office PhD thesis or R&D roles in EMEA."
+focus = "Current focus: Federated learning and distributed systems"
+imageUrl = "/Addala.jpg"
 imageTitle = "Raed Addala's profile picture"
 imageWidth = 120
 imageHeight = 120
+
+[[params.profileMode.socialIcons]]
+name = "github"
+url = "https://github.com/RaedAddala"
+
+[[params.profileMode.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/addalaraed/"
+
+[[params.profileMode.socialIcons]]
+name = "email"
+url = "mailto:addala.raed@gmail.com"
+
+[[params.profileMode.socialIcons]]
+name = "researchgate"
+url = "https://www.researchgate.net/profile/Raed-Addala"
 
 [[params.profileMode.buttons]]
 name = "Projects"
@@ -134,10 +151,6 @@ url = "/projects/"
 [[params.profileMode.buttons]]
 name = "Blog"
 url = "/posts/"
-
-[[params.profileMode.buttons]]
-name = "Resume"
-url = "/resume/"
 
 [[params.socialIcons]]
 name = "github"
@@ -168,6 +181,10 @@ name = "codeforces"
 url = "https://codeforces.com/profile/MekraziRaed"
 
 [[params.socialIcons]]
+name = "researchgate"
+url = "https://www.researchgate.net/profile/Raed-Addala"
+
+[[params.socialIcons]]
 name = "rss"
 url = "https://raedaddala.github.io/index.xml"
 
@@ -194,19 +211,9 @@ url = "/posts/"
 weight = 30
 
 [[menu.main]]
-name = "Resume"
-url = "/resume/"
-weight = 40
-
-[[menu.main]]
-name = "Contact"
-url = "/contact/"
-weight = 50
-
-[[menu.main]]
 name = "Search"
 url = "/search/"
-weight = 60
+weight = 40
 
 [markup]
 [markup.highlight]
