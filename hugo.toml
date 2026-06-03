@@ -90,7 +90,19 @@ favicon32x32 = "/assets/favicon-32x32.png"
 apple_touch_icon = "/assets/apple-touch-icon.png"
 android_chrome_192 = "/assets/android-chrome-192x192.png"
 android_chrome_512 = "/assets/android-chrome-512x512.png"
-themeColor = "#1e1e1e"
+theme_color = "#1e1e1e"
+
+[params.schema]
+publisherType = "Person"
+sameAs = [
+  "https://github.com/RaedAddala",
+  "https://www.linkedin.com/in/addalaraed/",
+  "https://x.com/AddalaRaed",
+  "https://stackoverflow.com/users/11842805/raed-addala",
+  "https://www.kaggle.com/raedaddala",
+  "https://codeforces.com/profile/MekraziRaed",
+  "https://www.researchgate.net/profile/Raed-Addala"
+]
 
 [params.pwa.manifest]
 name = "Raed Addala"

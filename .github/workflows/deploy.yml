@@ -3,31 +3,34 @@ name: Deploy Hugo to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - master
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true  # For theme if using modules
+          submodules: true
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.162.1'
+          hugo-version: 'latest'
           extended: true
 
       - name: Build
-        run: hugo --minify
+        run: hugo --minify --gc
 
       - name: Deploy to External Repo
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.ref == 'refs/heads/main' }}
         with:
           personal_token: ${{ secrets.PERSONAL_TOKEN }}
           external_repository: RaedAddala/RaedAddala.github.io
