@@ -7,4 +7,5 @@ placeholder: "Search the site..."
 images: ["/og-image.jpg"]
 sitemap:
   disable: true
+robotsNoIndex: true
 ---
