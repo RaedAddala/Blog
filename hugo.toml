@@ -5,6 +5,7 @@ theme = "PaperMod"
 copyright = "© 2026 Raed Addala - Content licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\" rel=\"noopener\">CC BY-NC 4.0</a>."
 enableRobotsTXT = true
 canonifyURLs = false
+enableGitInfo = true
 
 [pagination]
 pagerSize = 5
@@ -84,6 +85,7 @@ coverImageDir = "/images/"
 ShowTaxonomiesInFooter = true
 
 [params.assets]
+disableFingerprinting = false
 favicon = "/favicon.ico"
 favicon16x16 = "/assets/favicon-16x16.png"
 favicon32x32 = "/assets/favicon-32x32.png"
@@ -117,6 +119,10 @@ theme_color = "#1e1e1e"
 [params.cover]
 responsiveImages = true
 linkFullImages = true
+
+[params.cloudflareWebAnalytics]
+enabled = true
+token = "b081c0a1b187418580c0a2d4266103e1"
 
 [params.fuseOpts]
 isCaseSensitive = false
@@ -155,6 +161,10 @@ url = "mailto:addala.raed@gmail.com"
 [[params.profileMode.socialIcons]]
 name = "researchgate"
 url = "https://www.researchgate.net/profile/Raed-Addala"
+
+[[params.profileMode.socialIcons]]
+name = "rss"
+url = "https://raedaddala.github.io/index.xml"
 
 [[params.profileMode.buttons]]
 name = "Projects"
@@ -202,6 +212,9 @@ url = "https://raedaddala.github.io/index.xml"
 
 [services.googleAnalytics]
 id = "G-V8V895X3G4"
+
+[services.rss]
+limit = -1
 
 [privacy.googleAnalytics]
 disable = false
