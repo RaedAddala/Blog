@@ -1,0 +1,219 @@
+baseURL = "https://raedaddala.github.io/"
+locale = "en-us"
+title = "Raed Addala"
+theme = "PaperMod"
+copyright = "© 2026 Raed Addala - Content licensed under <a href=\"https://creativecommons.org/licenses/by-nc/4.0/\" target=\"_blank\" rel=\"noopener\">CC BY-NC 4.0</a>."
+enableRobotsTXT = true
+canonifyURLs = false
+
+[pagination]
+pagerSize = 5
+
+[minify]
+disableXML = true
+minifyOutput = true
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+section = ["HTML"]
+taxonomy = ["HTML"]
+term = ["HTML"]
+
+[sitemap]
+changefreq = "weekly"
+priority = 0.5
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+series = "series"
+
+[related]
+threshold = 80
+includeNewer = true
+toLower = true
+
+[[related.indices]]
+name = "tags"
+weight = 100
+
+[[related.indices]]
+name = "categories"
+weight = 80
+
+[[related.indices]]
+name = "date"
+weight = 10
+
+[params]
+env = "production"
+description = "Software engineering student portfolio and technical blog focused on backend engineering, distributed systems, and applied projects."
+keywords = ["software engineering", "portfolio", "backend", "distributed systems", "Apache Kafka", "Hugo", "technical blog", "blockchain", "Rust", "actor model", "software internals"]
+author = "Raed Addala"
+images = ["/og-image.jpg"]
+DateFormat = "January 2, 2006"
+defaultTheme = "auto"
+mainSections = ["posts", "projects"]
+
+ShowReadingTime = true
+ShowWordCount = true
+ShowCodeCopyButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowRssButtonInSectionTermList = true
+ShowFullTextinRSS = true
+ShowShareButtons = true
+twitterCards = true
+ShowToc = true
+TocOpen = false
+showtoc = true
+tocopen = false
+ShowAllPagesInArchive = true
+ShowTaxonomiesInPost = true
+ShowPageNums = true
+UseHugoToc = true
+disableSpecial1stPost = false
+disableScrollToTop = false
+hidemeta = false
+hideSummary = false
+comments = false
+ShowSearchBar = true
+ShowRelatedPosts = 5
+limitPagerPosts = 5
+coverImageDir = "/images/"
+ShowTaxonomiesInFooter = true
+
+[params.assets]
+favicon = "/favicon.ico"
+favicon16x16 = "/assets/favicon-16x16.png"
+favicon32x32 = "/assets/favicon-32x32.png"
+apple_touch_icon = "/assets/apple-touch-icon.png"
+android_chrome_192 = "/assets/android-chrome-192x192.png"
+android_chrome_512 = "/assets/android-chrome-512x512.png"
+themeColor = "#1e1e1e"
+
+[params.pwa.manifest]
+name = "Raed Addala"
+short_name = "Raed"
+description = "Portfolio and technical blog on software engineering, backend systems, and distributed systems."
+start_url = "/"
+scope = "/"
+display = "standalone"
+background_color = "#ffffff"
+theme_color = "#1e1e1e"
+
+[params.cover]
+responsiveImages = true
+linkFullImages = true
+
+[params.fuseOpts]
+isCaseSensitive = false
+shouldSort = true
+location = 0
+distance = 1000
+threshold = 0.3
+minMatchCharLength = 2
+keys = ["title", "permalink", "summary", "content", "tags", "categories"]
+
+[params.social]
+twitter = "AddalaRaed"
+
+[params.profileMode]
+enabled = true
+title = "Raed Addala"
+subtitle = "Software engineering student focused on backend systems, distributed systems, and practical engineering projects."
+imageUrl = "https://avatars.githubusercontent.com/u/56173312?v=4"
+imageTitle = "Raed Addala's profile picture"
+imageWidth = 120
+imageHeight = 120
+
+[[params.profileMode.buttons]]
+name = "Projects"
+url = "/projects/"
+
+[[params.profileMode.buttons]]
+name = "Blog"
+url = "/posts/"
+
+[[params.profileMode.buttons]]
+name = "Resume"
+url = "/resume/"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/RaedAddala"
+
+[[params.socialIcons]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/addalaraed/"
+
+[[params.socialIcons]]
+name = "email"
+url = "mailto:addala.raed@gmail.com"
+
+[[params.socialIcons]]
+name = "x"
+url = "https://x.com/AddalaRaed"
+
+[[params.socialIcons]]
+name = "stackoverflow"
+url = "https://stackoverflow.com/users/11842805/raed-addala"
+
+[[params.socialIcons]]
+name = "kaggle"
+url = "https://www.kaggle.com/raedaddala"
+
+[[params.socialIcons]]
+name = "codeforces"
+url = "https://codeforces.com/profile/MekraziRaed"
+
+[[params.socialIcons]]
+name = "rss"
+url = "https://raedaddala.github.io/index.xml"
+
+[services.googleAnalytics]
+id = "G-V8V895X3G4"
+
+[privacy.googleAnalytics]
+disable = false
+respectDoNotTrack = true
+
+[[menu.main]]
+name = "About"
+url = "/about/"
+weight = 10
+
+[[menu.main]]
+name = "Projects"
+url = "/projects/"
+weight = 20
+
+[[menu.main]]
+name = "Blog"
+url = "/posts/"
+weight = 30
+
+[[menu.main]]
+name = "Resume"
+url = "/resume/"
+weight = 40
+
+[[menu.main]]
+name = "Contact"
+url = "/contact/"
+weight = 50
+
+[[menu.main]]
+name = "Search"
+url = "/search/"
+weight = 60
+
+[markup]
+[markup.highlight]
+style = "github"
+lineNos = true
+codeFences = true
+guessSyntax = true
+
+[markup.goldmark.renderer]
+unsafe = true

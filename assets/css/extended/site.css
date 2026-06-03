@@ -1,0 +1,168 @@
+/* PaperMod extension layer: keep the theme UI, only refine presentation details. */
+
+:root {
+  --main-width: 760px;
+  --nav-width: 1040px;
+  --radius: 8px;
+  --entry-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --entry-shadow-hover: 0 16px 40px rgba(15, 23, 42, 0.1);
+}
+
+.header-nav {
+  gap: 18px;
+}
+
+.logo a {
+  letter-spacing: 0;
+}
+
+.menu {
+  gap: 4px 18px;
+}
+
+.menu a {
+  font-size: 0.95rem;
+  text-underline-offset: 6px;
+}
+
+.menu .active {
+  text-decoration-thickness: 1.5px;
+}
+
+.profile {
+  min-height: 56vh;
+  padding: 36px 0 28px;
+}
+
+.profile .profile_inner {
+  gap: 12px;
+}
+
+.profile h1 {
+  margin-top: 6px;
+  line-height: 1.1;
+}
+
+.profile .profile_inner > span {
+  max-width: 620px;
+  color: var(--secondary);
+  line-height: 1.65;
+}
+
+.profile img {
+  border: 1px solid var(--border);
+  box-shadow: var(--entry-shadow);
+}
+
+.profile .buttons {
+  margin-top: 10px;
+}
+
+.button {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  border-color: var(--secondary);
+  transform: translateY(-1px);
+}
+
+.social-icons a {
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.social-icons a:hover,
+.social-icons a:focus-visible {
+  opacity: 0.82;
+  transform: translateY(-1px);
+}
+
+.post-entry {
+  border-radius: var(--radius);
+  box-shadow: var(--entry-shadow);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.post-entry:hover,
+.post-entry:focus-within {
+  box-shadow: var(--entry-shadow-hover);
+}
+
+.entry-cover img,
+.post-entry .entry-cover img,
+.post-single .entry-cover img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.terms-tags a {
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.terms-tags a:hover,
+.terms-tags a:focus-visible,
+.post-tags a:hover,
+.post-tags a:focus-visible {
+  border-color: var(--secondary);
+}
+
+.post-content img {
+  border-radius: var(--radius);
+}
+
+.post-content a,
+.entry-content a {
+  text-underline-offset: 4px;
+}
+
+.post-title,
+.page-header h1 {
+  letter-spacing: 0;
+}
+
+.breadcrumbs {
+  margin-bottom: 6px;
+}
+
+.toc {
+  border-radius: var(--radius);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 3px;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --main-width: 100%;
+  }
+
+  .profile {
+    min-height: auto;
+    padding: 22px 0;
+  }
+
+  .menu {
+    gap: 4px 12px;
+  }
+
+  .menu a {
+    font-size: 0.92rem;
+  }
+
+  .profile .profile_inner > span {
+    max-width: 34rem;
+  }
+}

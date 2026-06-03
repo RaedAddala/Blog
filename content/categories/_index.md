@@ -1,4 +1,6 @@
 ---
 title: "Categories"
-description: "Explore topics in Distributed Systems, Rust, Blockchain, and more."
+description: "Browse Raed Addala's posts by category."
+summary: "Category index for technical writing and project notes."
+images: ["/og-image.jpg"]
 ---

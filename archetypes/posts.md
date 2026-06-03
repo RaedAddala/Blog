@@ -4,8 +4,13 @@ date: {{ .Date }}
 draft: true
 description: ""
 summary: ""
-keywords: []
+author: "Raed Addala"
 tags: []
-categories: []
+categories: ["Engineering Notes"]
+series: []
+keywords: []
 images: ["/og-image.jpg"]
+ShowToc: true
+TocOpen: false
+comments: true
 ---

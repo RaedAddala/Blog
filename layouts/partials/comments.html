@@ -1,15 +1,17 @@
-{{- /* Comments area start */ -}}
-{{- /* to add comments read => https://gohugo.io/content-management/comments/ */ -}}
-{{- if .Site.Params.comments }}
-<section class="giscus" id="giscus">
-    <script src="https://giscus.app/client.js" data-repo="RaedAddala/Blog" data-repo-id="R_kgDOP8s1dw"
-        data-category="Q&A" data-category-id="DIC_kwDOP8s1d84CwhWK" data-mapping="pathname" data-strict="1"
-        data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="preferred_color_scheme" data-lang="en"
-        data-loading="lazy" crossorigin="anonymous" async>
-        </script>
-    <noscript>
-        <p>Please enable JavaScript to view comments powered by <a href="https://giscus.app">giscus</a>.</p>
-    </noscript>
-</section>
-{{- end }}
-{{- /* Comments area end */ -}}
+{{ if and (eq .Section "posts") .Params.comments }}
+<script src="https://giscus.app/client.js"
+        data-repo="RaedAddala/Blog"
+        data-repo-id="R_kgDOP8s1dw"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOP8s1d84CwhWK"
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+{{ end }}

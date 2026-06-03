@@ -1,18 +1,8 @@
-{{- /* Head custom content area start */ -}}
-{{- /* Insert any custom code (web-analytics, resources, etc.) - it will appear in the
-
-<head></head> section of every page. */ -}}
-{{- /* Can be overwritten by partial with the same name in the global layouts. */ -}}
-{{- /* Head custom content area end */ -}}
-
-{{/* Preconnect and preload for Google Fonts (site-wide) */}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" as="style">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap" media="print" onload="this.media='all'">
-
-{{/* Preload for giscus (only on single post pages) */}}
-{{ if .IsPage }}
-<link rel="preload" href="https://giscus.app/client.js" as="script">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="application-name" content="Raed Addala">
+<meta name="apple-mobile-web-app-title" content="Raed Addala">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+{{ if and (eq .Section "posts") .Params.comments }}
 <link rel="preconnect" href="https://giscus.app">
 {{ end }}
