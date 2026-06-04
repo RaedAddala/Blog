@@ -20,7 +20,7 @@ sitemap:
   <img class="about-profile-photo" src="/Addala.jpg" alt="Raed Addala">
   <p class="about-title">Federated Learning Research Intern at LaBRI | Software Engineering Student</p>
   <p class="about-location">Bordeaux, France - Distributed systems - Federated learning - Software engineering</p>
-  <p><a class="about-cv-link" href="/CV-Addala-Raed.pdf">Curriculum vitae</a></p>
+  <p><a class="about-cv-link" href="/CV-Addala-Raed.pdf" target="_blank" rel="noopener">Curriculum vitae</a></p>
 </div>
 
 ## About
