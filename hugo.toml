@@ -15,7 +15,7 @@ disableXML = true
 minifyOutput = true
 
 [outputs]
-home = ["HTML", "RSS", "JSON"]
+home = ["HTML", "RSS", "JSON", "SITEMAP", "ROBOTS"]
 section = ["HTML"]
 taxonomy = ["HTML"]
 term = ["HTML"]
