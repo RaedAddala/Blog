@@ -19,8 +19,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          submodules: true
           fetch-depth: 0
+
+      # Hugo uses Go to download the theme module pinned in go.mod.
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: false
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -32,8 +38,7 @@ jobs:
         run: hugo --gc --minify --cleanDestinationDir --enableGitInfo --environment production --panicOnWarning
 
       - name: Check internal links
-        # safari-pinned-tab.svg is linked by the theme on every page; ignore it until an icon is added.
-        run: python3 .github/scripts/check_links.py public "https://raedaddala.github.io/" --ignore /safari-pinned-tab.svg
+        run: python3 .github/scripts/check_links.py public "https://raedaddala.github.io/"
 
       - name: Deploy to External Repo
         if: github.event_name != 'pull_request'
