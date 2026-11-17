@@ -1,4 +1,4 @@
-{{ if and (eq .Section "posts") .Params.comments }}
+{{ if and (eq .Section "posts") (.Param "comments") }}
 <script src="https://giscus.app/client.js"
         data-repo="RaedAddala/Blog"
         data-repo-id="R_kgDOP8s1dw"

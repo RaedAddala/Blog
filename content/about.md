@@ -1,11 +1,11 @@
 ---
 title: "Raed Addala"
 summary: "Federated learning research intern at LaBRI and software engineering student focused on distributed systems."
-keywords: ["Raed Addala", "distributed systems", "federated learning", "LaBRI", "INSAT", "PBFT"]
+description: "About Raed Addala, a software engineering student at INSAT and federated learning research intern at LaBRI focused on distributed systems."
+keywords: ["Raed Addala", "distributed systems engineer", "federated learning intern", "AI infrastructure", "R&D engineer", "PhD candidate", "LaBRI", "INSAT", "PBFT"]
 images: ["/og-image.jpg"]
 ShowBreadCrumbs: false
 ShowToc: false
-showtoc: false
 hideMeta: true
 disableShare: true
 ShowPostNavLinks: false
@@ -17,7 +17,7 @@ sitemap:
 {{< social-icons >}}
 
 <div class="about-profile">
-  <img class="about-profile-photo" src="/Addala.jpg" alt="Raed Addala">
+  {{< profile-photo src="Addala.jpg" alt="Raed Addala" class="about-profile-photo" >}}
   <p class="about-title">Federated Learning Research Intern at LaBRI | Software Engineering Student</p>
   <p class="about-location">Bordeaux, France - Distributed systems - Federated learning - Software engineering</p>
   <p><a class="about-cv-link" href="/CV-Addala-Raed.pdf" target="_blank" rel="noopener">Curriculum vitae</a></p>

@@ -1,4 +1,6 @@
 ---
+# Create projects as folders so images sit next to the page:
+#   hugo new content projects/<name>/index.md   then add cover.jpg to that folder.
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 draft: true
@@ -7,16 +9,15 @@ summary: ""
 tags: []
 categories: ["Projects"]
 keywords: []
-tech: []
 role: ""
 status: "In progress"
-featured: false
 weight: 50
 repo: ""
 demo: ""
-images: ["/og-image.jpg"]
+images: ["cover.jpg"]
 cover:
-  image: ""
+  image: "cover.jpg"
+  relative: true
   alt: ""
 comments: false
 ---

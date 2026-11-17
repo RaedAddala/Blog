@@ -1,7 +1,7 @@
 {
   "name": "Raed Addala",
   "short_name": "Raed",
-  "description": "Portfolio and technical blog on software engineering, backend systems, and distributed systems.",
+  "description": "Portfolio focused on distributed systems, AI, and federated learning.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

@@ -1,9 +1,10 @@
 ---
 title: "Curriculum Vitae"
 summary: "Curriculum vitae for Raed Addala."
+description: "Curriculum vitae for Raed Addala, software engineering student focused on distributed systems, AI infrastructure, and federated learning."
+keywords: ["Raed Addala CV", "software engineering CV", "distributed systems engineer", "federated learning intern", "AI infrastructure", "R&D engineer", "PhD candidate"]
 ShowBreadCrumbs: false
 ShowToc: false
-showtoc: false
 hideMeta: true
 disableShare: true
 ShowPostNavLinks: false

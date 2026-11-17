@@ -23,8 +23,9 @@
 
 {{- $pages := slice }}
 {{- if .IsHome }}
-  {{- $pages = where site.RegularPages "Section" "posts" }}
-{{- else if or .IsHome .IsSection }}
+  {{- /* Home feed: every main section (posts and projects), not the search/archive/about pages. */}}
+  {{- $pages = where site.RegularPages "Section" "in" site.Params.mainSections }}
+{{- else if .IsSection }}
   {{- $pages = $pctx.RegularPages }}
 {{- else }}
   {{- $pages = $pctx.Pages }}
@@ -37,7 +38,10 @@
     {{- $datedPages = $datedPages | append . }}
   {{- end }}
 {{- end }}
-{{- $datedPages = sort $datedPages "Lastmod" "desc" }}
+{{- /* Newest publication first; editing an old page must not move it to the top. */}}
+{{- $lastmod := "" }}
+{{- with index (sort $datedPages "Lastmod" "desc") 0 }}{{ $lastmod = .Lastmod }}{{ end }}
+{{- $datedPages = sort $datedPages "PublishDate" "desc" }}
 
 {{- $limit := site.Config.Services.RSS.Limit }}
 {{- if ge $limit 1 }}
@@ -62,8 +66,8 @@
     <managingEditor>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</managingEditor>{{ end }}{{ with $authorEmail }}
     <webMaster>{{ . }}{{ with $authorName }} ({{ . }}){{ end }}</webMaster>{{ end }}{{ with site.Copyright }}
     <copyright>{{ . | markdownify | plainify | strings.TrimPrefix "© " }}</copyright>{{ end }}
-    {{- with index $datedPages 0 }}
-    <lastBuildDate>{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- with $lastmod }}
+    <lastBuildDate>{{ .Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
     {{- end }}
     {{- with .OutputFormats.Get "RSS" }}
     {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}

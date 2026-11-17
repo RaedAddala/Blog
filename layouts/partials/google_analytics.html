@@ -1,0 +1,11 @@
+{{- /*
+  Replaces Hugo's built-in google_analytics.html (the theme calls it only in production builds).
+  GA is not loaded here: assets/js/consent.js loads it only after the visitor accepts.
+*/ -}}
+{{- if not site.Config.Privacy.GoogleAnalytics.Disable }}
+  {{- with site.Config.Services.GoogleAnalytics.ID }}
+    {{- $js := resources.Get "js/consent.js" | resources.Minify | resources.Fingerprint }}
+    <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous"
+      data-ga-id="{{ . }}" data-respect-dnt="{{ site.Config.Privacy.GoogleAnalytics.RespectDoNotTrack }}"></script>
+  {{- end }}
+{{- end -}}

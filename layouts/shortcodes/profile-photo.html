@@ -1,0 +1,9 @@
+{{- /* Usage: {{< profile-photo src="Addala.jpg" alt="..." class="..." size=296 >}} — src is a path under assets/. */}}
+{{- $src := .Get "src" | default "Addala.jpg" }}
+{{- $size := .Get "size" | default 296 }}
+{{- with resources.Get $src }}
+  {{- $img := .Fill (printf "%dx%d Center webp" $size $size) }}
+  <img class="{{ $.Get "class" }}" src="{{ $img.RelPermalink }}" alt="{{ $.Get "alt" }}" width="{{ $img.Width }}" height="{{ $img.Height }}" loading="lazy" decoding="async">
+{{- else }}
+  {{- errorf "profile-photo: %q not found in assets/ (%s)" $src $.Position }}
+{{- end }}

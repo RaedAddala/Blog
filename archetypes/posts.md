@@ -7,7 +7,6 @@ summary: ""
 author: "Raed Addala"
 tags: []
 categories: ["Engineering Notes"]
-series: []
 keywords: []
 images: ["/og-image.jpg"]
 ShowToc: true

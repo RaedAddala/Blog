@@ -5,17 +5,16 @@ description: "A microservice live-streaming platform built with Elixir/Phoenix, 
 summary: "A Twitch-like live-streaming platform for software and IT streamers, built around Elixir/Phoenix microservices, SvelteKit, Kong, PostgreSQL, WebSocket chat, and RTMP-to-HLS media processing."
 tags: ["Elixir", "Phoenix", "Membrane", "SvelteKit", "Kong", "Docker", "PostgreSQL", "RTMP", "HLS", "Microservices", "Live Streaming"]
 categories: ["Projects"]
-keywords: ["Neon live streaming platform", "Elixir streaming platform", "Membrane RTMP HLS", "SvelteKit microservices", "Kong API gateway"]
-tech: ["Elixir", "Phoenix", "Membrane", "SvelteKit", "Kong", "Docker", "Docker Compose", "PostgreSQL", "RTMP", "HLS", "WebSocket"]
+keywords: ["Neon live streaming platform", "Elixir Phoenix microservices", "Membrane RTMP HLS", "SvelteKit frontend", "Kong API gateway", "PostgreSQL streaming platform", "WebSocket chat", "Docker Compose"]
 role: "Software engineering project contributor"
 status: "Completed"
-featured: true
 weight: 10
 repo: "https://github.com/RaedAddala/Neon"
 demo: ""
-images: ["/images/projects/neon-cover.png"]
+images: ["cover.jpg"]
 cover:
-  image: "/images/projects/neon-cover.png"
+  image: "cover.jpg"
+  relative: true
   alt: "Abstract live streaming infrastructure cover for Neon"
 comments: false
 ---
@@ -44,7 +43,7 @@ The authentication design uses JWTs signed by the auth service and verified at t
 
 The streaming service uses Membrane to model multimedia processing as a pipeline. A streamer sends video from an encoder such as OBS over RTMP. The service demuxes the incoming FLV stream, separates audio and video, parses AAC and H.264, packages the tracks as fragmented MP4 segments, and writes HLS output for browser playback.
 
-![Neon RTMP to HLS pipeline](/images/projects/neon-architecture.png)
+![Neon RTMP to HLS pipeline](architecture.png)
 
 This split matches the practical difference between first-mile and last-mile delivery. RTMP is useful for reliable, low-latency ingestion from the streamer, while HLS is easier to distribute to viewers through standard HTTP-based playback.
 

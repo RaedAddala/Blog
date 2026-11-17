@@ -339,3 +339,117 @@ button:focus-visible {
     min-height: 520px;
   }
 }
+
+/* Analytics consent banner (assets/js/consent.js). Both buttons share one style on purpose:
+   refusing must be as easy and as visible as accepting. */
+.consent-banner {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  bottom: 16px;
+  box-shadow: var(--entry-shadow-hover);
+  color: var(--primary);
+  font-size: 0.92rem;
+  left: 16px;
+  line-height: 1.55;
+  margin-inline: auto;
+  max-width: 560px;
+  padding: 16px 18px;
+  position: fixed;
+  right: 16px;
+  z-index: 100;
+}
+
+.consent-banner p {
+  color: var(--content);
+  margin: 0 0 12px;
+}
+
+.consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.consent-actions button {
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--primary);
+  cursor: pointer;
+  flex: 1 1 0;
+  font-weight: 600;
+  min-height: 38px;
+  padding: 7px 14px;
+}
+
+.consent-actions button:hover,
+.consent-actions button:focus-visible {
+  border-color: var(--secondary);
+}
+
+.footer .consent-link {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Project details card (layouts/partials/extend_post_content.html). */
+.project-meta {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  justify-content: space-between;
+  margin: 32px 0 8px;
+  padding: 16px 18px;
+}
+
+.project-meta dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 28px;
+  margin: 0;
+}
+
+.project-meta dt {
+  color: var(--secondary);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-meta dd {
+  color: var(--primary);
+  font-weight: 600;
+  margin: 2px 0 0;
+}
+
+.project-links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.project-links a {
+  background: var(--theme);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--primary);
+  font-weight: 600;
+  padding: 7px 14px;
+  text-decoration: none;
+}
+
+.project-links a:hover,
+.project-links a:focus-visible {
+  border-color: var(--secondary);
+}

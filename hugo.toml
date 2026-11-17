@@ -27,29 +27,10 @@ priority = 0.5
 [taxonomies]
 tag = "tags"
 category = "categories"
-series = "series"
-
-[related]
-threshold = 80
-includeNewer = true
-toLower = true
-
-[[related.indices]]
-name = "tags"
-weight = 100
-
-[[related.indices]]
-name = "categories"
-weight = 80
-
-[[related.indices]]
-name = "date"
-weight = 10
 
 [params]
-env = "production"
-description = "Portfolio of Raed Addala, a software engineering student at INSAT focused on distributed systems and AI, currently finishing an end-of-studies internship in federated learning."
-keywords = ["Raed Addala", "distributed systems", "AI", "federated learning", "software engineering", "INSAT", "R&D engineer", "PhD thesis", "EMEA"]
+description = "Portfolio of Raed Addala, a software engineering student at INSAT focused on distributed systems, AI infrastructure, and federated learning."
+keywords = ["Raed Addala", "distributed systems", "AI infrastructure", "federated learning", "software engineering", "distributed systems engineer", "R&D engineer", "PhD candidate", "INSAT", "EMEA"]
 author = "Raed Addala"
 images = ["/og-image.jpg"]
 DateFormat = "January 2, 2006"
@@ -64,13 +45,9 @@ ShowBreadCrumbs = true
 ShowRssButtonInSectionTermList = true
 ShowFullTextinRSS = true
 ShowShareButtons = true
-twitterCards = true
 ShowToc = true
 TocOpen = false
-showtoc = true
-tocopen = false
 ShowAllPagesInArchive = true
-ShowTaxonomiesInPost = true
 ShowPageNums = true
 UseHugoToc = true
 disableSpecial1stPost = false
@@ -78,11 +55,6 @@ disableScrollToTop = false
 hidemeta = false
 hideSummary = false
 comments = true
-ShowSearchBar = true
-ShowRelatedPosts = 5
-limitPagerPosts = 5
-coverImageDir = "/images/"
-ShowTaxonomiesInFooter = true
 
 [params.assets]
 disableFingerprinting = false
@@ -90,8 +62,6 @@ favicon = "/favicon.ico"
 favicon16x16 = "/assets/favicon-16x16.png"
 favicon32x32 = "/assets/favicon-32x32.png"
 apple_touch_icon = "/assets/apple-touch-icon.png"
-android_chrome_192 = "/assets/android-chrome-192x192.png"
-android_chrome_512 = "/assets/android-chrome-512x512.png"
 theme_color = "#1e1e1e"
 
 [params.schema]
@@ -105,16 +75,6 @@ sameAs = [
   "https://codeforces.com/profile/MekraziRaed",
   "https://www.researchgate.net/profile/Raed-Addala"
 ]
-
-[params.pwa.manifest]
-name = "Raed Addala"
-short_name = "Raed"
-description = "Portfolio focused on distributed systems, AI, and federated learning."
-start_url = "/"
-scope = "/"
-display = "standalone"
-background_color = "#ffffff"
-theme_color = "#1e1e1e"
 
 [params.cover]
 responsiveImages = true
@@ -131,7 +91,7 @@ location = 0
 distance = 1000
 threshold = 0.3
 minMatchCharLength = 2
-keys = ["title", "permalink", "summary", "content", "tags", "categories"]
+keys = ["title", "permalink", "summary", "content", "tags", "categories", "keywords"]
 
 [params.social]
 twitter = "AddalaRaed"
@@ -141,7 +101,7 @@ enabled = true
 title = "Raed Addala"
 subtitle = "Software engineering student at INSAT focused on distributed systems and AI, currently finishing an end-of-studies internship in federated learning and seeking hybrid or in-office PhD thesis or R&D roles in EMEA."
 focus = "Current focus: Federated learning and distributed systems"
-imageUrl = "/Addala.jpg"
+imageUrl = "Addala.jpg"
 imageTitle = "Raed Addala's profile picture"
 imageWidth = 120
 imageHeight = 120
@@ -169,10 +129,6 @@ url = "https://raedaddala.github.io/index.xml"
 [[params.profileMode.buttons]]
 name = "Projects"
 url = "/projects/"
-
-[[params.profileMode.buttons]]
-name = "Blog"
-url = "/posts/"
 
 [[params.profileMode.buttons]]
 name = "CV"
@@ -233,11 +189,6 @@ weight = 10
 name = "Projects"
 url = "/projects/"
 weight = 20
-
-[[menu.main]]
-name = "Blog"
-url = "/posts/"
-weight = 30
 
 [[menu.main]]
 name = "Search"

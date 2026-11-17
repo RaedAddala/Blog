@@ -3,10 +3,10 @@
 <meta name="apple-mobile-web-app-title" content="Raed Addala">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-{{ if and (eq .Section "posts") .Params.comments }}
+{{ if and (eq .Section "posts") (.Param "comments") }}
 <link rel="preconnect" href="https://giscus.app">
 {{ end }}
 {{- $cf := site.Params.cloudflareWebAnalytics -}}
-{{- if and (hugo.IsProduction | or (eq site.Params.env "production")) $cf.enabled $cf.token }}
+{{- if and hugo.IsProduction $cf.enabled $cf.token }}
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"{{ $cf.token }}"}'></script>
 {{- end }}

@@ -1,0 +1,28 @@
+{{- /* Theme hook: rendered after the page body, before the tags footer. Shows project details. */ -}}
+{{- if and .IsPage (eq .Section "projects") }}
+  {{- $p := .Params }}
+  {{- if or $p.role $p.status $p.repo $p.demo }}
+  <aside class="project-meta" aria-label="Project details">
+    {{- if or $p.role $p.status }}
+    <dl>
+      {{- with $p.role }}
+      <div><dt>Role</dt><dd>{{ . }}</dd></div>
+      {{- end }}
+      {{- with $p.status }}
+      <div><dt>Status</dt><dd>{{ . }}</dd></div>
+      {{- end }}
+    </dl>
+    {{- end }}
+    {{- if or $p.repo $p.demo }}
+    <div class="project-links">
+      {{- with $p.repo }}
+      <a href="{{ . }}" target="_blank" rel="noopener">Source code</a>
+      {{- end }}
+      {{- with $p.demo }}
+      <a href="{{ . }}" target="_blank" rel="noopener">Live demo</a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </aside>
+  {{- end }}
+{{- end }}
