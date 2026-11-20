@@ -1,0 +1,18 @@
+# Single source for publications: rendered by the {{< publications >}} shortcode on the
+# Publications and About pages (citation, DOI link, BibTeX). Newest first by year.
+#
+# Fields: key (BibTeX key), type (article | inproceedings | misc), title, authors (given/family),
+# venue (journal or conference), volume, year, doi, and optional project (site path).
+
+- key: zouaghi2025impact
+  type: article
+  title: Impact of Parallelism and Transaction Execution Acceleration on Blockchain Consistency
+  authors:
+    - { given: Mohamed, family: Zouaghi }
+    - { given: Raed, family: Addala }
+    - { given: Sofiane, family: Ouni }
+  venue: Current Engineering Letters and Reviews
+  volume: 3
+  year: 2025
+  doi: 10.2174/012666948X433384251126112321
+  project: /projects/rc-pbft/

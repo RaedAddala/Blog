@@ -1,0 +1,85 @@
+name: Update Hugo and PaperMod
+
+# Monthly (or on demand): raise the Hugo version in hugo.toml to the latest release, update the
+# PaperMod module to its latest commit, build and link-check the site with both, then open or
+# refresh one pull request from the `deps-update` branch.
+#
+# One-time setup: Settings → Actions → General → Workflow permissions →
+# "Allow GitHub Actions to create and approve pull requests".
+#
+# Pull requests opened with GITHUB_TOKEN do not trigger other workflows, so deploy.yml's PR build
+# will not run on them. That is why the build and link check run here, before the PR is opened.
+on:
+  schedule:
+    - cron: "0 6 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-dependencies
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # full history for .GitInfo / lastmod
+
+      - name: Update Hugo version in hugo.toml
+        id: hugo_update
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 .github/scripts/update_hugo.py
+
+      - name: Read Hugo version
+        id: hugo
+        run: echo "version=$(python3 -c 'import tomllib; print(tomllib.load(open("hugo.toml", "rb"))["module"]["hugoVersion"]["min"])')" >> "$GITHUB_OUTPUT"
+
+      - name: Setup Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: false
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ steps.hugo.outputs.version }}
+          extended: true
+
+      - name: Update PaperMod
+        id: theme
+        run: bash .github/scripts/update_theme.sh
+
+      - name: Anything to update?
+        id: any
+        run: echo "changed=${{ steps.hugo_update.outputs.changed == 'true' || steps.theme.outputs.changed == 'true' }}" >> "$GITHUB_OUTPUT"
+
+      - name: Build
+        if: steps.any.outputs.changed == 'true'
+        run: hugo --gc --minify --cleanDestinationDir --enableGitInfo --environment production --panicOnWarning
+
+      - name: Check internal links
+        if: steps.any.outputs.changed == 'true'
+        run: python3 .github/scripts/check_links.py public "https://raedaddala.github.io/"
+
+      - name: Open or update pull request
+        if: steps.any.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE: ${{ github.ref_name }}  # scheduled runs use the default branch
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          HUGO_CHANGED: ${{ steps.hugo_update.outputs.changed }}
+          HUGO_OLD: ${{ steps.hugo_update.outputs.old }}
+          HUGO_NEW: ${{ steps.hugo_update.outputs.new }}
+          THEME_CHANGED: ${{ steps.theme.outputs.changed }}
+          THEME_OLD: ${{ steps.theme.outputs.old }}
+          THEME_NEW: ${{ steps.theme.outputs.new }}
+          THEME_COMPARE: ${{ steps.theme.outputs.compare }}
+        run: bash .github/scripts/open_update_pr.sh

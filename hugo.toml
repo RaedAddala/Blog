@@ -28,8 +28,8 @@ tag = "tags"
 category = "categories"
 
 [params]
-description = "Portfolio of Raed Addala, a software engineering student at INSAT focused on distributed systems, AI infrastructure, and federated learning."
-keywords = ["Raed Addala", "distributed systems", "AI infrastructure", "federated learning", "software engineering", "distributed systems engineer", "R&D engineer", "PhD candidate", "INSAT", "EMEA"]
+description = "Raed Addala is a PhD student in the MAGELLAN team at Inria Rennes, working on caching for massively distributed systems."
+keywords = ["Raed Addala", "PhD student", "caching", "massively distributed systems", "distributed systems", "decentralized computing", "Inria", "IRISA", "MAGELLAN", "Rennes"]
 author = "Raed Addala"
 images = ["/og-image.jpg"]
 DateFormat = "January 2, 2006"
@@ -83,6 +83,9 @@ linkFullImages = true
 enabled = true
 token = "b081c0a1b187418580c0a2d4266103e1"
 
+[params.footer]
+text = "[Privacy](/privacy/)"
+
 [params.fuseOpts]
 isCaseSensitive = false
 shouldSort = true
@@ -98,8 +101,8 @@ twitter = "AddalaRaed"
 [params.profileMode]
 enabled = true
 title = "Raed Addala"
-subtitle = "Software engineering student at INSAT focused on distributed systems and AI, currently finishing an end-of-studies internship in federated learning and seeking hybrid or in-office PhD thesis or R&D roles in EMEA."
-focus = "Current focus: Federated learning and distributed systems"
+subtitle = "PhD student in the MAGELLAN team at Inria Rennes, working on caching for massively distributed systems. Previously: federated learning at LaBRI and research on blockchain consistency."
+focus = "Current focus: caching for massively distributed systems"
 imageUrl = "Addala.jpg"
 imageTitle = "Raed Addala's profile picture"
 imageWidth = 120
@@ -124,6 +127,10 @@ url = "https://www.researchgate.net/profile/Raed-Addala"
 [[params.profileMode.socialIcons]]
 name = "rss"
 url = "https://raedaddala.github.io/index.xml"
+
+[[params.profileMode.buttons]]
+name = "Research"
+url = "/research/"
 
 [[params.profileMode.buttons]]
 name = "Projects"
@@ -185,6 +192,16 @@ url = "/about/"
 weight = 10
 
 [[menu.main]]
+name = "Research"
+url = "/research/"
+weight = 13
+
+[[menu.main]]
+name = "Publications"
+url = "/publications/"
+weight = 16
+
+[[menu.main]]
 name = "Projects"
 url = "/projects/"
 weight = 20
@@ -212,3 +229,8 @@ lastmod = ["lastmod", ":git", "date", "publishDate"]
 [module]
 [[module.imports]]
 path = "github.com/adityatelange/hugo-PaperMod"
+
+# Single source of truth for the Hugo version: CI installs exactly this version, and an older
+# local Hugo refuses to build. Raised automatically by .github/workflows/update-dependencies.yml.
+[module.hugoVersion]
+min = "0.170.1"

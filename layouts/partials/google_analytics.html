@@ -6,6 +6,7 @@
   {{- with site.Config.Services.GoogleAnalytics.ID }}
     {{- $js := resources.Get "js/consent.js" | resources.Minify | resources.Fingerprint }}
     <script defer src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" crossorigin="anonymous"
-      data-ga-id="{{ . }}" data-respect-dnt="{{ site.Config.Privacy.GoogleAnalytics.RespectDoNotTrack }}"></script>
+      data-ga-id="{{ . }}" data-respect-dnt="{{ site.Config.Privacy.GoogleAnalytics.RespectDoNotTrack }}"
+      {{- with site.GetPage "/privacy" }} data-privacy-url="{{ .RelPermalink }}"{{ end }}></script>
   {{- end }}
 {{- end -}}

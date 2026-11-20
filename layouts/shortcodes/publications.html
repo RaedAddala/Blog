@@ -1,0 +1,46 @@
+{{- /*
+  Renders data/publications.yaml: citation (own name in bold), DOI link, related project and BibTeX.
+  Usage: {{< publications >}}   or, without BibTeX blocks: {{< publications bibtex=false >}}
+*/ -}}
+{{- /* bibtex=false arrives as a boolean, bibtex="false" as a string: compare as text. */}}
+{{- $showBib := ne (printf "%v" (.Get "bibtex")) "false" }}
+{{- $pubs := sort (hugo.Data.publications | default slice) "year" "desc" }}
+<ul class="publications">
+  {{- range $pubs }}
+  {{- $names := slice }}
+  {{- $bibNames := slice }}
+  {{- range .authors }}
+    {{- $name := printf "%s %s" .given .family | htmlEscape }}
+    {{- if and (eq .given "Raed") (eq .family "Addala") }}{{ $name = printf "<strong>%s</strong>" $name }}{{ end }}
+    {{- $names = $names | append $name }}
+    {{- /* Family name first, braced so BibTeX prints it exactly as written: {Zouaghi Mohamed}. */}}
+    {{- $bibNames = $bibNames | append (printf "{%s %s}" .family .given) }}
+  {{- end }}
+  {{- $authors := cond (eq (len $names) 2) (delimit $names " and ") (delimit $names ", " ", and ") }}
+  {{- $url := cond (isset . "doi") (printf "https://doi.org/%s" .doi) (.url | default "") }}
+  <li>
+    {{ $authors | safeHTML }}.
+    {{ with $url }}<a href="{{ . }}">{{ end }}{{ .title }}{{ with $url }}</a>{{ end }}.
+    <em>{{ .venue }}</em>{{ with .volume }}, vol. {{ . }}{{ end }}, {{ .year }}.
+    {{- with .doi }} DOI: <a href="https://doi.org/{{ . }}">{{ . }}</a>{{ end }}
+    {{- with .project }}{{ if ne (. | relURL) $.Page.RelPermalink }} · <a href="{{ . | relURL }}">Project page</a>{{ end }}{{ end }}
+    {{- if $showBib }}
+    {{- $venueField := cond (eq .type "inproceedings") "booktitle" "journal" }}
+    {{- $fields := slice
+      (printf "  author    = {%s}" (delimit $bibNames " and "))
+      (printf "  title     = {%s}" .title)
+      (printf "  %-9s = {%s}" $venueField .venue)
+    }}
+    {{- with .volume }}{{ $fields = $fields | append (printf "  volume    = {%v}" .) }}{{ end }}
+    {{- $fields = $fields | append (printf "  year      = {%v}" .year) }}
+    {{- with .doi }}{{ $fields = $fields | append (printf "  doi       = {%s}" .) }}{{ end }}
+    <details class="bibtex">
+      <summary>BibTeX</summary>
+      <pre><code>@{{ .type | default "misc" }}{{ "{" }}{{ .key }},
+{{ delimit $fields ",\n" }}
+}</code></pre>
+    </details>
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>

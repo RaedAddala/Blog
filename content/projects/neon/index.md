@@ -1,13 +1,14 @@
 ---
 title: "Neon"
 date: 2024-06-04
-description: "A microservice live-streaming platform built with Elixir/Phoenix, SvelteKit, Kong, and a Membrane RTMP-to-HLS pipeline."
-summary: "A Twitch-like live-streaming platform for software and IT streamers, built around Elixir/Phoenix microservices, SvelteKit, Kong, PostgreSQL, WebSocket chat, and RTMP-to-HLS media processing."
-tags: ["Elixir", "Phoenix", "Membrane", "SvelteKit", "Kong", "Docker", "PostgreSQL", "RTMP", "HLS", "Microservices", "Live Streaming"]
+description: "A microservice live-streaming platform: three Elixir/Phoenix services behind a Kong gateway, a Membrane RTMP-to-HLS pipeline, Phoenix Channels chat, RS256 JWTs verified at the gateway, and a SvelteKit frontend."
+summary: "Microservice live-streaming platform: Elixir/Phoenix services behind Kong, a Membrane RTMP-to-HLS pipeline, Phoenix Channels chat, gateway-verified RS256 JWTs with key rotation, and a SvelteKit frontend."
+tags: ["Elixir", "Phoenix", "Membrane", "SvelteKit", "Kong", "Lua", "JWT", "Docker", "PostgreSQL", "RTMP", "HLS", "Microservices", "Live Streaming"]
 categories: ["Projects"]
-keywords: ["Neon live streaming platform", "Elixir Phoenix microservices", "Membrane RTMP HLS", "SvelteKit frontend", "Kong API gateway", "PostgreSQL streaming platform", "WebSocket chat", "Docker Compose"]
-role: "Software engineering project contributor"
+keywords: ["Neon live streaming platform", "Elixir Phoenix microservices", "Membrane RTMP HLS", "Kong API gateway", "custom Kong Lua plugin", "RS256 JWT key rotation", "Phoenix Channels chat", "SvelteKit"]
+role: "Team member (3-person team)"
 status: "Completed"
+period: "February to June 2024"
 weight: 10
 repo: "https://github.com/RaedAddala/Neon"
 demo: ""
@@ -19,42 +20,67 @@ cover:
 comments: false
 ---
 
-Neon is a live-streaming platform designed for software engineering and IT streamers. It explores the architecture behind a Twitch-like system: users can authenticate, manage profiles, start or watch streams, and interact through real-time chat while the backend handles media ingestion and browser-ready distribution.
+Neon is a live-streaming platform for software engineering and IT streamers, built as a third-year project at INSAT with [Zeineb BenAbdallah](https://github.com/zei-ZZ) and [Mohamed Hedi Ben Ali](https://github.com/medhedibenali). The goal was a scalable and reliable streaming platform, and the interesting part is the architecture: a streamer pushes video over RTMP, the backend repackages it into HLS that any browser can play, and viewers chat in real time next to the stream.
 
-The project was built with [Zeineb BenAbdallah](https://github.com/zei-ZZ) and [Mohamed Hedi Ben Ali](https://github.com/medhedibenali) as a software engineering academic project at INSAT. The code is available on [GitHub](https://github.com/RaedAddala/Neon).
+The code is on [GitHub](https://github.com/RaedAddala/Neon), and the design is documented in the [technical report](https://github.com/RaedAddala/Neon/blob/master/Project%20Report.pdf) (PDF).
 
 ## Architecture
 
-Neon uses a microservice architecture instead of placing authentication, chat, and streaming logic in one application. The backend is split into three Phoenix services:
+The backend is split into three Elixir/Phoenix services, each in its own container, behind a Kong API gateway:
 
-- **Authentication service** for registration, login, profile management, PostgreSQL persistence, and JWT issuance.
-- **Live chat service** for low-latency viewer interaction through Phoenix Channels and WebSocket connections.
-- **Live streaming service** for receiving an RTMP stream, processing it with Membrane, and exposing HLS output to viewers.
+| Component | Responsibility | Main technology |
+|---|---|---|
+| **Auth service** | Registration, login, profiles, follows, and JWT issuance | Phoenix 1.7, Ecto + PostgreSQL, Guardian, Argon2 |
+| **Live chat service** | Real-time chat rooms per streamer | Phoenix Channels over WebSocket |
+| **Live streaming service** | RTMP ingest, repackaging to HLS, and serving the segments | Membrane 1.0, Phoenix |
+| **API gateway** | Single entry point, routing, and token verification | Kong (DB-less), custom Lua plugin |
+| **Frontend** | Sign-up, login, profiles, and the watch page with chat | SvelteKit 2, Svelte 4, Tailwind CSS |
 
-Each service is containerized with Docker and wired together with Docker Compose. Kong sits in front of the services as the API gateway, giving the platform one routing layer for HTTP APIs, uploaded assets, chat traffic, and stream watching routes. This keeps the service boundaries visible while still giving the frontend one stable entry point.
+The services share no database and do not call each other: only the auth service has a database (PostgreSQL), and the other services get the caller's identity from the gateway instead of asking the auth service. This keeps the three workloads separate. Authentication is CPU-light request/response traffic, chat is many long-lived WebSocket connections, and media processing is CPU- and I/O-heavy, so each can be scaled or restarted on its own.
 
-## Gateway and Authorization
+## Gateway and authentication
 
-Kong acts as the middleware layer between the SvelteKit frontend and the backend services. It routes public authentication requests, protects profile-changing endpoints, forwards live chat traffic, and exposes the stream watching path.
+Kong runs **DB-less**: all services, routes, and plugins are defined in one declarative `kong.yaml`. Public routes (register, login, reading profiles, uploaded images, and the stream) pass straight through, while profile changes and logout require a valid token.
 
-The authentication design uses JWTs signed by the auth service and verified at the gateway. A custom Kong auth plugin handles the cases where a browser WebSocket handshake cannot send arbitrary authorization headers: for chat routes, tokens can be read from query parameters and converted into request data that the downstream service can use. That keeps authorization close to the gateway without forcing every service to duplicate the same token verification logic.
+Tokens are **RS256 JWTs** signed by the auth service with Guardian. Asymmetric signing is what lets verification move out of the services: the gateway only needs the public key, never the signing key. The auth service generates an RSA key pair and rotates it on a timer from a supervised GenServer, and a small cron container fetches the current public key from the auth service every hour and writes it to a volume that Kong reads.
 
-## Streaming Pipeline
+Verification is done by a **custom Kong plugin written in Lua**. The report explains why Kong's built-in JWT plugin was not enough: it does not work with WebSockets, and browsers cannot attach an `Authorization` header to a WebSocket handshake. The plugin has two modes:
 
-The streaming service uses Membrane to model multimedia processing as a pipeline. A streamer sends video from an encoder such as OBS over RTMP. The service demuxes the incoming FLV stream, separates audio and video, parses AAC and H.264, packages the tracks as fragmented MP4 segments, and writes HLS output for browser playback.
+- **Header mode** for HTTP routes reads a `Bearer` token and forwards the caller's identity to the service as headers.
+- **Query mode** for the chat socket reads the token from the connection URL and forwards the identity as query parameters. It also allows anonymous connections, so anyone can read a chat while only signed-in users can write.
+
+## Streaming pipeline
 
 ![Neon RTMP to HLS pipeline](architecture.png)
 
-This split matches the practical difference between first-mile and last-mile delivery. RTMP is useful for reliable, low-latency ingestion from the streamer, while HLS is easier to distribute to viewers through standard HTTP-based playback.
+The streaming service runs an **RTMP server** on TCP port 9006. A streamer points an encoder such as OBS at it, and each incoming connection starts its **own Membrane pipeline**, a separate Erlang process, so one broken stream cannot take down another.
+
+Inside the pipeline, Membrane's RTMP source demuxes the FLV stream into its audio and video tracks and parses them as **AAC** and **H.264**. The HTTP adaptive stream sink then packages each track as CMAF (fragmented MP4) in **4-second segments** and writes an HLS playlist. Phoenix serves the playlist and segments over plain HTTP, and the browser plays them with hls.js.
+
+The split follows the first-mile / last-mile difference: **RTMP** is a good fit for ingest from a single encoder over a persistent TCP connection, while **HLS** is plain HTTP files, which every browser and CDN can handle.
+
+## Live chat
+
+Each streamer has a chat room, a Phoenix Channels topic named after them (`chat:<username>`). Anyone can join and read, but only sockets that carry an identity verified by the gateway can send messages, and the server, not the client, attaches the sender's name and a timestamp before broadcasting. Messages are relayed live and not stored.
 
 ## Frontend
 
-The frontend is a SvelteKit application with routes for signup, login, profile management, starting a stream, and watching another user's stream. The watch page combines the video player and live chat, while the stream page exposes controls to start and stop a broadcast.
+The SvelteKit app has routes for sign-up, login, profile management, starting a stream, and watching a streamer (`/watch/[username]`). Forms use server-side actions with sveltekit-superforms and zod validation that call the gateway. The chat uses the Phoenix JavaScript client over the gateway's WebSocket route, and the UI is built with Tailwind CSS and shadcn-svelte components.
 
-SvelteKit was chosen for a small, fast frontend with straightforward routing and component structure. Tailwind CSS handles the interface styling, while typed stores and utility wrappers keep client-side state and API calls organized.
+## Deployment
 
-## Engineering Takeaways
+The whole backend runs with **Docker Compose**: the three services, PostgreSQL, Kong, and the key-fetching cron container. Volumes hold the database, uploaded profile pictures, and the shared public key. Kong is the public HTTP entry point (port 8000), with its admin ports bound to localhost. The streaming service also exposes its RTMP port for encoders and its HTTP port for video playback.
 
-The main engineering challenge was deciding where responsibilities belong in a distributed streaming platform. Authentication, chat, and media processing have different scaling and failure characteristics, so separating them made the system easier to reason about and gave Kong a clear role as the shared entry point.
+## Tech stack
 
-The project also made the protocol tradeoffs concrete. RTMP, HLS, WebSocket, JWT authorization, and HTTP gateway routing each solve a different part of the platform. Bringing them together required thinking beyond individual frameworks and focusing on end-to-end data flow: how a stream enters the system, how it becomes playable in the browser, and how viewer interaction stays real-time beside it.
+- **Backend:** Elixir 1.16 on OTP 26, Phoenix 1.7 (auth and chat) and 1.6 (streaming), Ecto, PostgreSQL
+- **Media:** Membrane Core 1.0, Membrane RTMP plugin, Membrane HTTP Adaptive Stream plugin (HLS, CMAF)
+- **Security:** Guardian (RS256 JWTs), Argon2 password hashing, Kong with a custom Lua plugin
+- **Frontend:** SvelteKit 2, Svelte 4, Vite 5, Tailwind CSS, shadcn-svelte, sveltekit-superforms, zod, Phoenix JS client
+- **Infrastructure:** Docker, Docker Compose, Kong (DB-less mode)
+
+## Scope and next steps
+
+Neon is a working prototype of the architecture rather than a production service. It handles one live stream at a time (all pipelines write to the same output folder, with no stream keys yet), serves a single rendition without a bitrate ladder, and keeps chat in memory only.
+
+The report's next steps are storage, notification, and subscription services, a recommender, **Kafka with object storage (S3) for video chunks**, H.265 and more renditions, a job scheduler with worker clusters for transcoding, and Snowflake IDs instead of UUIDs.

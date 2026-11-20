@@ -453,3 +453,30 @@ button:focus-visible {
 .project-links a:focus-visible {
   border-color: var(--secondary);
 }
+
+/* Publications list (layouts/shortcodes/publications.html). */
+.post-content ul.publications {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.post-content ul.publications > li {
+  border-inline-start: 3px solid var(--border);
+  line-height: 1.65;
+  margin: 0 0 18px;
+  padding: 2px 0 2px 14px;
+}
+
+.post-content .bibtex {
+  margin-top: 8px;
+}
+
+.post-content .bibtex summary {
+  color: var(--secondary);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.post-content .bibtex pre {
+  margin-top: 8px;
+}

@@ -11,6 +11,7 @@ categories: ["Projects"]
 keywords: []
 role: ""
 status: "In progress"
+period: ""
 weight: 50
 repo: ""
 demo: ""

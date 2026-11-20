@@ -1,7 +1,7 @@
 {
   "name": "Raed Addala",
   "short_name": "Raed",
-  "description": "Portfolio focused on distributed systems, AI, and federated learning.",
+  "description": "Raed Addala, PhD student at Inria Rennes working on caching for massively distributed systems.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

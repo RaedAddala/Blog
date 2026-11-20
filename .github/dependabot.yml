@@ -1,0 +1,13 @@
+# Keeps the GitHub Actions used in .github/workflows up to date (one grouped PR per month).
+# PaperMod is updated by .github/workflows/update-dependencies.yml instead: it has no semver tags,
+# so Dependabot's Go module updater would not propose new commits.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns:
+          - "*"

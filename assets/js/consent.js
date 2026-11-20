@@ -7,6 +7,7 @@
   const script = document.currentScript;
   const gaId = script.dataset.gaId;
   const respectDnt = script.dataset.respectDnt === "true";
+  const privacyUrl = script.dataset.privacyUrl;
   const STORAGE_KEY = "analytics-consent";
   const MAX_AGE_MS = 182 * 24 * 60 * 60 * 1000;
 
@@ -51,11 +52,43 @@
     }
   };
 
+  // GA decides a session's source (utm_* parameters, referrer) from its first hit. When a visitor
+  // accepts on a later page than the one they landed on, that information is gone, so the landing
+  // page is kept in this tab's sessionStorage until they decide. It never leaves the browser unless
+  // they accept, and it is deleted on either choice.
+  const LANDING_KEY = "analytics-landing";
+  const rememberLanding = () => {
+    try {
+      if (sessionStorage.getItem(LANDING_KEY)) return;
+      sessionStorage.setItem(
+        LANDING_KEY,
+        JSON.stringify({ url: location.href, referrer: document.referrer, title: document.title })
+      );
+    } catch (_) {
+      // Storage blocked: the session is attributed to the page where the visitor accepts.
+    }
+  };
+  const takeLanding = () => {
+    try {
+      const l = JSON.parse(sessionStorage.getItem(LANDING_KEY));
+      sessionStorage.removeItem(LANDING_KEY);
+      if (l && typeof l.url === "string" && l.url !== location.href) return l;
+    } catch (_) {
+      // Storage blocked or malformed: nothing to replay.
+    }
+    return null;
+  };
+
   let loaded = false;
   const loadGa = () => {
     window["ga-disable-" + gaId] = false;
-    if (loaded) return;
+    if (loaded) {
+      // Accepted again after a reject on this same page: undo the "denied" consent update.
+      window.gtag("consent", "update", { analytics_storage: "granted" });
+      return;
+    }
     loaded = true;
+    const landing = takeLanding();
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () {
       window.dataLayer.push(arguments);
@@ -70,7 +103,18 @@
     window.gtag("config", gaId, {
       allow_google_signals: false,
       allow_ad_personalization_signals: false,
+      send_page_view: !landing,
     });
+    if (landing) {
+      // Landing page first so the session gets its campaign and referrer, then the current page
+      // (which falls back to the default location and referrer).
+      window.gtag("event", "page_view", {
+        page_location: landing.url,
+        page_referrer: landing.referrer,
+        page_title: landing.title,
+      });
+      window.gtag("event", "page_view");
+    }
     const s = document.createElement("script");
     s.async = true;
     s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gaId);
@@ -93,7 +137,10 @@
     write(value);
     closeBanner();
     if (value === "granted") loadGa();
-    else stopGa();
+    else {
+      takeLanding();
+      stopGa();
+    }
   };
 
   const showBanner = () => {
@@ -105,7 +152,9 @@
     banner.innerHTML =
       '<p>May I use <strong>Google Analytics</strong> to count visits and see which pages are read? ' +
       "It sets cookies only if you accept, and you can change your choice anytime from " +
-      "&ldquo;Cookie settings&rdquo; in the footer. Cookieless Cloudflare visit counts run either way.</p>" +
+      "&ldquo;Cookie settings&rdquo; in the footer. Cookieless Cloudflare visit counts run either way. " +
+      (privacyUrl ? '<a href="' + privacyUrl + '">Privacy details</a>.' : "") +
+      "</p>" +
       '<div class="consent-actions">' +
       '<button type="button" data-consent="denied">Reject</button>' +
       '<button type="button" data-consent="granted">Accept</button>' +
@@ -139,6 +188,7 @@
   if (choice === "granted") loadGa();
   else if (choice === null) {
     clearGaCookies();
+    rememberLanding();
     showBanner();
   }
 })();

@@ -1,12 +1,15 @@
 {{- /* Theme hook: rendered after the page body, before the tags footer. Shows project details. */ -}}
 {{- if and .IsPage (eq .Section "projects") }}
   {{- $p := .Params }}
-  {{- if or $p.role $p.status $p.repo $p.demo }}
+  {{- if or $p.role $p.status $p.period $p.repo $p.demo }}
   <aside class="project-meta" aria-label="Project details">
-    {{- if or $p.role $p.status }}
+    {{- if or $p.role $p.status $p.period }}
     <dl>
       {{- with $p.role }}
       <div><dt>Role</dt><dd>{{ . }}</dd></div>
+      {{- end }}
+      {{- with $p.period }}
+      <div><dt>Period</dt><dd>{{ . }}</dd></div>
       {{- end }}
       {{- with $p.status }}
       <div><dt>Status</dt><dd>{{ . }}</dd></div>

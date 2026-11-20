@@ -1,8 +1,8 @@
 ---
 title: "Raed Addala"
-summary: "Federated learning research intern at LaBRI and software engineering student focused on distributed systems."
-description: "About Raed Addala, a software engineering student at INSAT and federated learning research intern at LaBRI focused on distributed systems."
-keywords: ["Raed Addala", "distributed systems engineer", "federated learning intern", "AI infrastructure", "R&D engineer", "PhD candidate", "LaBRI", "INSAT", "PBFT"]
+summary: "PhD student in the MAGELLAN team at Inria Rennes, working on caching for massively distributed systems."
+description: "About Raed Addala, PhD student in the MAGELLAN team at Inria Rennes, working on caching for massively distributed systems."
+keywords: ["Raed Addala", "PhD student", "caching", "massively distributed systems", "distributed systems", "Inria", "IRISA", "MAGELLAN", "Rennes", "federated learning", "PBFT"]
 images: ["/og-image.jpg"]
 ShowBreadCrumbs: false
 ShowToc: false
@@ -18,8 +18,8 @@ sitemap:
 
 <div class="about-profile">
   {{< profile-photo src="Addala.jpg" alt="Raed Addala" class="about-profile-photo" >}}
-  <p class="about-title">Federated Learning Research Intern at LaBRI | Software Engineering Student</p>
-  <p class="about-location">Bordeaux, France - Distributed systems - Federated learning - Software engineering</p>
+  <p class="about-title">PhD Student | MAGELLAN team, Inria / IRISA</p>
+  <p class="about-location">Rennes, France - Caching - Massively distributed systems</p>
   <p><a class="about-cv-link" href="/CV-Addala-Raed.pdf" target="_blank" rel="noopener">Curriculum vitae</a></p>
 </div>
 
@@ -27,20 +27,21 @@ sitemap:
 
 > "Make it work, then make it beautiful, then, if you really, really have to, make it fast. Ninety percent of the time, if you make it beautiful, it will already be fast. So really, just make it beautiful!" - Joe Armstrong, creator of the Erlang programming language.
 
-I am a software engineering student at INSAT and a federated learning research intern at LaBRI. My main interest is distributed systems: infrastructure, algorithms, architecture, programming languages, and the engineering decisions that make systems scalable and resilient.
+I am a PhD student in the [MAGELLAN](https://team.inria.fr/magellan/) team at Inria and IRISA in Rennes, France, where I work on caching for massively distributed systems. MAGELLAN works on reliable and responsible decentralized computing infrastructures.
 
-I like working close to the boundary between research and implementation. I have worked on blockchain consistency in PBFT-based infrastructure, distributed computing for multimodal AI video processing, backend systems for production workflows, and federated learning simulations for Fog-IoT environments.
+My main interest is distributed systems: infrastructure, algorithms, architecture, programming languages, and the engineering decisions that make systems scalable and resilient.
+
+Before my PhD, I worked close to the boundary between research and implementation: federated learning for heterogeneous Fog-IoT environments at LaBRI, blockchain consistency in PBFT-based infrastructure, distributed video processing for multimodal AI, and backend systems in production.
 
 I am technology-agnostic in practice: I care less about defending one stack and more about choosing tools that fit the problem. I enjoy understanding how critical software is built, why a language or architecture was designed a certain way, and how choices in data structures, algorithms, and system design affect performance, scalability, and failure behavior.
 
-My goal is to build a career as a distributed systems engineer, ideally in teams working on distributed AI systems, large-scale infrastructure, or research-driven engineering.
+## Experience
 
-## Work Experience
-
-- ***March to August 2026***: *Federated Learning Research Intern*, **LaBRI, Bordeaux, France**. Working on data and node heterogeneity in Fog-IoT environments for centralized federated learning.
-- ***June to August 2025***: *Distributed Computing Intern*, **ImaginarioAI, Philadelphia, Pennsylvania, USA (Remote)**. Worked on distributed video processing pipelines for multimodal AI workloads.
-- ***2024 to 2025***: *Junior Software Engineer - Working Student*, **BySur, Paris, France (Remote)**. Built backend services and LLM-based workflows, including RAG and document verification systems for the insurance sector.
-- ***2024***: *Junior Software Engineer - Working Student*, **Metadrift, Tunis, Tunisia**. Built a custom ERP backend for stock handling, transaction flows, invoices, product lifecycles, clients, and analytics.
+- ***2026 to present***: *PhD Student*, **MAGELLAN team, Inria / IRISA, Rennes, France**. Caching for massively distributed systems.
+- ***March to August 2026***: *Federated Learning Research Intern*, **LaBRI, Bordeaux, France**. Worked on statistical and system heterogeneity in Fog computing environments for federated learning, and on a validation suite covering diverse data, compute, and network conditions.
+- ***June to September 2025***: *Distributed Computing Intern*, **ImaginarioAI, Philadelphia, Pennsylvania, USA (Remote)**. Built a distributed video processing system using parallel chunking and a MapReduce-inspired architecture for multimodal AI workloads.
+- ***November 2024 to April 2025***: *Junior Software Engineer - Working Student*, **BySur, Paris, France (Remote)**. Built containerized backend services and LLM-based workflows, including RAG and document verification systems for the insurance sector.
+- ***March to October 2024***: *Junior Software Engineer - Working Student*, **Metadrift, Tunis, Tunisia**. Built a custom ERP backend for stock handling, transaction flows, and product lifecycles, and optimized SQL queries.
 
 ## Education
 
@@ -48,8 +49,6 @@ My goal is to build a career as a distributed systems engineer, ideally in teams
 
 ## Publications
 
-- Zouaghi Mohamed, Addala Raed, and Sofiane Ouni. [Impact of Parallelism and Transaction Execution Acceleration on Blockchain Consistency](https://www.eurekaselect.com/article/151920). Current Engineering Letters and Reviews, 2025. DOI: [10.2174/012666948X433384251126112321](https://dx.doi.org/10.2174/012666948X433384251126112321)
+{{< publications bibtex=false >}}
 
-## What I Am Looking For
-
-I am looking for hybrid or in-office opportunities in the EMEA region, either as a PhD thesis candidate or in an R&D engineering role. I am especially interested in distributed systems engineering, distributed AI infrastructure, and research-oriented teams where correctness, scalability, and implementation quality matter.
+BibTeX entries are on the [Publications](/publications/) page. More about my current and past research on the [Research](/research/) page.
